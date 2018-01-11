@@ -12,13 +12,13 @@ import {
     Image,
     Button
 } from 'react-native';
+import RoundButton from "../../component/ui/RoundButton";
 
 
 export default class Main extends Component<{}> {
 loginClick=()=>{
 
 };
-
     render() {
         return (
             <View style={styles.container}>
@@ -29,16 +29,32 @@ loginClick=()=>{
                       <Text style={styles.smallText}>iorem ipsum summytext here!</Text>
                     </View>
 
-                   <View style={styles.btnView}>
-                     <Button onPress={this.loginClick} title="LOGIN" color="gray"/>
-                   </View>
-                   <View style={styles.btnView2}>
-                     <Button onPress={this.loginClick} title="SIGNUP" color="gray"/>
-                   </View>
-                    <Button onPress={this.loginClick} title="LOGIN WITH FACEBOOK" color="indigo"/>
-                </View>
+                       <RoundButton onClick={this.onclick}
+                                    name="LOGIN"
+                                    btnBgColor='orange'
+                                    btnPadding={7}
+                                    btnHeight={35}
+                                    btnWidth={250}
+                                    btnMarTop={30}
+                       />
+                       <RoundButton onClick={this.onclick}
+                                    name="SIGNUP"
+                                    btnBgColor='orange'
+                                    btnPadding={7}
+                                    btnHeight={35}
+                                    btnWidth={250}
+                                    btnMarTop={30}
+                                    />
+                    <RoundButton onClick={this.onclick}
+                                 name="LOGIN WITH FACEBOOK"
+                                 btnBgColor='orange'
+                                 btnPadding={7}
+                                 btnHeight={35}
+                                 btnWidth={250}
+                                 btnMarTop={30}
+                                 />
             </View>
-
+            </View>
         );
     }
 }

@@ -6,9 +6,7 @@ module.exports=StyleSheet.create({
         alignItems:'center',
         justifyContent:'center'
     },
-    subContainer:{
-        width:250
-    },
+
     logoImage:{
         height:60,
         width:250,
@@ -34,10 +32,17 @@ module.exports=StyleSheet.create({
 
     },
     textViewLogin:{
+        marginTop:20,
         alignItems:'center'
     },
     forgotPass:{
         marginTop:17,
         alignItems:'flex-end',
+    },
+    icon: {
+        position: 'absolute',
+        top: 33,
+        right: 0
+
     }
 });

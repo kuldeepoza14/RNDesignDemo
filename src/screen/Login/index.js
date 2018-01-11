@@ -10,9 +10,11 @@ import {
     View,
     Text,
     Image,
-    Button,
-    TextInput
+    Button, Alert,
 } from 'react-native';
+import RoundButton from "../../component/ui/RoundButton";
+import PasswordVisibility from "../../component/ui/PasswordVisibility";
+import TextFeild from "../../component/ui/TextFeild";
 
 
 export default class Login extends Component<{}> {
@@ -20,6 +22,9 @@ export default class Login extends Component<{}> {
 
     };
 
+    onclick = () => {
+        Alert.alert("Login Successful");
+    };
     render() {
         return (
             <View style={styles.container}>
@@ -31,13 +36,18 @@ export default class Login extends Component<{}> {
                     </View>
                     <View style={styles.newLoginBind}>
                         <View>
-                           <TextInput placeholder="Email"/>
+                            <TextFeild/>
                         </View>
-                        <View style={styles.itPass}>
-                            <TextInput placeholder="Password"/>
-                        </View>
+                        <PasswordVisibility />
                         <View style={styles.btnLogin}>
-                            <Button onPress={this.loginClick} title="Login" color="indigo"/>
+                            <RoundButton onClick={this.onclick}
+                                         name="LOGIN"
+                                         btnBgColor='orange'
+                                         btnPadding={7}
+                                         btnHeight={35}
+                                         btnWidth={270}
+                                         btnMarTop={15}/>
+
                         </View>
                         <Text style={styles.forgotPass}>Forgot Your Password?</Text>
                     </View>

@@ -22,7 +22,6 @@ module.exports=StyleSheet.create({
         fontSize:10,
         color:'gray'
     },
-
     btnLogin:{
         marginTop:15
     },

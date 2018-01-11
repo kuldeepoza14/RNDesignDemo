@@ -13,6 +13,8 @@ import {
     Button,
     TextInput
 } from 'react-native';
+import RoundButton from "../../component/ui/RoundButton";
+import TextField from "react-native-material-textfield/src/components/field/index";
 
 
 export default class ForgotPassword extends Component<{}> {
@@ -31,11 +33,15 @@ export default class ForgotPassword extends Component<{}> {
                     </View>
                     <View style={styles.newForPassBind}>
                         <View style={styles.itEmail}>
-                            <TextInput placeholder="Email"/>
+                            <TextField label='Email'  lineWidth={1} baseColor="orange"  keyboardType="email-address" textColor="gray" tintColor='darkorange'/>
                         </View>
-                        <View style={styles.btnForPass}>
-                            <Button onPress={this.loginClick} title="Reset Password" color="indigo"/>
-                        </View>
+                        <RoundButton onClick={this.onclick}
+                                     name="LOGIN"
+                                     btnBgColor='orange'
+                                     btnPadding={7}
+                                     btnHeight={35}
+                                     btnWidth={270}
+                                     btnMarTop={15}/>
                     </View>
 
                 </View>
