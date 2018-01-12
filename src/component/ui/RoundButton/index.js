@@ -21,9 +21,7 @@ export default class RoundButton extends Component<{}> {
             height: 35,
             width: 250
         };
-
     }
-
     render() {
         let btnStylesArray = [];
         let height, width;
@@ -47,7 +45,6 @@ export default class RoundButton extends Component<{}> {
             height = 40;
             width = 350;
         }
-        const double = (x) => x * 2;
         btnStylesArray.push({
             backgroundColor: this.props.btnBgColor,
             borderRadius: 20,
