@@ -1,7 +1,9 @@
-const Color = {
+export const Color = {
     WHITE: '#ffffff',
     BLACK: '#000000',
     TRANSPARENT: 'transparent',
+    PRIMARY:'#1e1e1e',
+    SECONDRY:'#505050',
     DELTAGREY: {
         50: '#e4e4e4',
         100: '#bdbdbd',
@@ -372,54 +374,5 @@ const Color = {
     },
 };
 
-const { WHITE, BLACK, TRANSPARENT, DELTAGREY, DELTABLUE, DELTAORANGE, DELTAGREEN,
-    RED, PINK, PURPLE, DEEPPRUPLE, INDIGO, BLUE, LIGHTBLUE, CYAN, TEAL,
-    GREEN, LIGHTGREEN, LIME, YELLOW, AMBER, ORANGE, DEEPORANGE,
-    BROWN, BLUEGREY, GREY } = Color;
 
-const primary = 500;
-const primaryColor = {
-    White: WHITE,
-    Black: BLACK,
-    Transparent: TRANSPARENT,
-    DeltaGrey: DELTAGREY[primary],
-    DeltaBlue: DELTABLUE[primary],
-    DeltaOrange: DELTAORANGE[primary],
-    DeltaGreen: DELTAGREEN[primary],
-    Red: RED[primary],
-    Pink: PINK[primary],
-    Purple: PURPLE[primary],
-    DeepPruple: DEEPPRUPLE[primary],
-    Indigo: INDIGO[primary],
-    Blue: BLUE[primary],
-    LightBlue: LIGHTBLUE[primary],
-    Cyan: CYAN[primary],
-    Teal: TEAL[primary],
-    Green: GREEN[primary],
-    LightGreen: LIGHTGREEN[primary],
-    Lime: LIME[primary],
-    Yellow: YELLOW[primary],
-    Amber: AMBER[primary],
-    Orange: ORANGE[primary],
-    DeepOrange: DEEPORANGE[primary],
-    Brown: BROWN[primary],
-    BlueGrey: BLUEGREY[primary],
-    Grey: GREY[primary],
-};
 
-const { White, Black, Transparent, DeltaGrey, DeltaBlue, DeltaOrange, DeltaGreen,
-    Red, Pink, Purple, DeepPruple, Indigo, Blue, LightBlue, Cyan, Teal,
-    Green, LightGreen, Lime, Yellow, Amber, Orange, DeepOrange,
-    Brown, BlueGrey, Grey } = primaryColor;
-
-export default Object.assign({}, Color, primaryColor);
-
-export { WHITE, BLACK, TRANSPARENT, DELTAGREY, DELTABLUE, DELTAORANGE, DELTAGREEN,
-    RED, PINK, PURPLE, DEEPPRUPLE, INDIGO, BLUE, LIGHTBLUE, CYAN, TEAL,
-    GREEN, LIGHTGREEN, LIME, YELLOW, AMBER, ORANGE, DEEPORANGE,
-    BROWN, BLUEGREY, GREY };
-
-export { White, Black, Transparent, DeltaGrey, DeltaBlue, DeltaOrange, DeltaGreen,
-    Red, Pink, Purple, DeepPruple, Indigo, Blue, LightBlue, Cyan, Teal,
-    Green, LightGreen, Lime, Yellow, Amber, Orange, DeepOrange,
-    Brown, BlueGrey, Grey };

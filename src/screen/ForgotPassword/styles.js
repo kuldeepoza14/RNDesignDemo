@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-
+import {Color} from "../../utils/color";
 module.exports=StyleSheet.create({
     container:{
         flex:1,
@@ -8,11 +8,11 @@ module.exports=StyleSheet.create({
     largeText:{
         marginTop:40,
         fontSize:25,
-        color:'black'
+        color:Color.PRIMARY
     },
     smallText:{
         fontSize:11,
-        color:'gray'
+        color:Color.SECONDRY
     },
     subText:{
         paddingLeft:60,

@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import {Color} from "../../utils/color";
 
 module.exports=StyleSheet.create({
     container:{
@@ -15,12 +16,12 @@ justifyContent:'center'
     largeText:{
         marginTop:40,
         fontSize:20,
-        color:'black'
+        color:Color.PRIMARY
     },
     smallText:{
         marginTop:5,
         fontSize:10,
-        color:'gray'
+        color:Color.SECONDRY
     },
     btnView:{
         marginTop:30,

@@ -4,22 +4,24 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styles from './styles';
 import {
     View,
     Text,
-    Alert,
-    Button,
-    CheckBox, Image,
+    Image,
 } from 'react-native';
-import TextField from "react-native-material-textfield/src/components/field/index";
 import RoundButton from "../../component/ui/RoundButton";
-import PasswordVisibility from "../../component/ui/PasswordVisibility";
+import FloatingInputText from "../../component/ui/FloatingInputText";
+import PasswordInputText from "../../component/ui/PasswordInputText";
+
 export default class Signup extends Component<{}> {
 
     onclick = () => {
-        Alert.alert("Signup Successful");
+        console.log("Name : " + this.state.name);
+        console.log("Email : " + this.state.email);
+        console.log("Password : " + this.state.password);
+        console.log("Number : " + this.state.number);
     };
 
     render() {
@@ -27,23 +29,28 @@ export default class Signup extends Component<{}> {
             <View style={styles.container}>
                 <View>
                     <View style={styles.textViewLogin}>
-                        <Image style={styles.logoImage} source={{uri : 'http://zroomp.com/logotransbg.png'}}/>
+                        <Image style={styles.logoImage} source={{uri: 'http://zroomp.com/logotransbg.png'}}/>
                         <Text style={styles.largeText}>Signup to Zroomp</Text>
                         <Text style={styles.smallText}>iorem ipsum summytext here!</Text>
                     </View>
                     <View style={styles.newLoginBind}>
-                            <TextField label='Name'  lineWidth={2} baseColor="orange" textColor="gray" tintColor='darkorange'/>
-                            <TextField label='Phone Number' baseColor="orange"  lineWidth={2} keyboardType="numeric" textColor="gray" tintColor='darkorange'/>
-                            <TextField label='Email'  lineWidth={2} baseColor="orange"  keyboardType="email-address" textColor="gray" tintColor='darkorange'/>
-                            <PasswordVisibility />
-                            <RoundButton onClick={this.onclick}
-                                         name="SIGNUP"
-                                         btnBgColor="orange"
-                                         btnPadding={7}
-                                         btnHeight={35}
-                                         btnWidth={250}
-                                         btnMarTop={30}
-                                      />
+                        <FloatingInputText tfLabel='Name'
+                                           onChangeText={(name) => this.setState({name})}/>
+                        <FloatingInputText tfLabel='Phone Number'
+                                           keyboardType="numeric"
+                                           onChangeText={(number) => this.setState({number})}/>
+                        <FloatingInputText tfLabel='Email'
+                                           keyboardType="email-address"
+                                           onChangeText={(email) => this.setState({email})}/>
+                        <PasswordInputText onChangeText={(password) => this.setState({password})}/>
+                        <RoundButton onClick={this.onclick}
+                                     name="SIGNUP"
+                                     btnPadding={7}
+                                     btnHeight={35}
+                                     btnWidth={250}
+                                     btnMarTop={30}
+                                     Md={true}
+                        />
                     </View>
                 </View>
             </View>

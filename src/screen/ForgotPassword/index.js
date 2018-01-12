@@ -4,22 +4,23 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styles from './styles';
 import {
     View,
     Text,
-    Image,
-    Button,
-    TextInput
+    Alert
 } from 'react-native';
 import RoundButton from "../../component/ui/RoundButton";
-import TextField from "react-native-material-textfield/src/components/field/index";
+import FloatingInputText from "../../component/ui/FloatingInputText";
+
 
 
 export default class ForgotPassword extends Component<{}> {
-    loginClick=()=>{
 
+
+    onclick = () => {
+        Alert.alert("Email : " + this.state.email);
     };
 
     render() {
@@ -33,11 +34,13 @@ export default class ForgotPassword extends Component<{}> {
                     </View>
                     <View style={styles.newForPassBind}>
                         <View style={styles.itEmail}>
-                            <TextField label='Email'  lineWidth={1} baseColor="orange"  keyboardType="email-address" textColor="gray" tintColor='darkorange'/>
+                            <FloatingInputText
+                                tfLabel='Email'
+                                keybordType="email-address"
+                                onChangeText={(email) => this.setState({email})}/>
                         </View>
                         <RoundButton onClick={this.onclick}
                                      name="LOGIN"
-                                     btnBgColor='orange'
                                      btnPadding={7}
                                      btnHeight={35}
                                      btnWidth={270}
