@@ -49,7 +49,7 @@ export default class Signup extends Component<{}> {
                                      btnHeight={35}
                                      btnWidth={250}
                                      btnMarTop={30}
-                                     Md={true}
+                                     Nor={true}
                         />
                     </View>
                 </View>

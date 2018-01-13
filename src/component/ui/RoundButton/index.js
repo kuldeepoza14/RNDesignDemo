@@ -15,16 +15,10 @@ import PropTypes from 'prop-types';
 import {Color} from "../../../utils/color";
 
 export default class RoundButton extends Component<{}> {
-    constructor(props) {
-        super(props);
-        this.state = {
-            height: 35,
-            width: 250
-        };
-    }
+
     render() {
         let btnStylesArray = [];
-        let height, width;
+        let height=35, width=250;
         if (this.props.ESm) {
             height = 30;
             width = 150;
@@ -87,8 +81,8 @@ RoundButton.propTypes = {
 };
 RoundButton.defaultProps = {
     btnWidth: 400,
-    btnHeight: 150,
-    btnPadding: 40,
+    btnHeight: 130,
+    btnPadding: 8,
     btnBgColor: Color.PRIMARY,
     btnMarTop: 30,
     ESm: false,

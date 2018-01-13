@@ -15,14 +15,50 @@ import {
 import RoundButton from "../../component/ui/RoundButton";
 import FloatingInputText from "../../component/ui/FloatingInputText";
 import PasswordInputText from "../../component/ui/PasswordInputText";
+import {validation} from "../../utils/validate";
 
 export default class Login extends Component<{}> {
 
-    onclick = () => {
-        Alert.alert("Email : " + this.state.email + "\n" + "Password : " + this.state.password);
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            emailError:'',
+            password: '',
+            passError:''
+        };
+    }
+
+    loginClick = () => {
+        let result=validation("email",this.state.email);
+          if (!((result.email) == null)) {
+               this.setState({
+                   emailError: result.email.toString()
+               });
+           }
+           else
+           {
+               this.setState({
+                   emailError: ''
+               });
+           }
+        let resultPass=validation("password",this.state.password);
+        if (!((resultPass.password) == null)) {
+            this.setState({
+                passError: resultPass.password.toString()
+            });
+        }
+        else
+        {
+            this.setState({
+                passError: ''
+            });
+        }
+
+       };
 
     render() {
+
         return (
             <View style={styles.container}>
                 <View>
@@ -33,17 +69,18 @@ export default class Login extends Component<{}> {
                     </View>
                     <View style={styles.newLoginBind}>
                         <FloatingInputText tfLabel='Email'
+                                           error={this.state.emailError}
                                            keybordType="email-address"
                                            onChangeText={(email) => this.setState({email})}/>
-                        <PasswordInputText onChangeText={(password) => this.setState({password})}/>
+                        <PasswordInputText
+                            error={this.state.passError}
+                            onChangeText={(password) => this.setState({password})}/>
                         <View style={styles.btnLogin}>
-                            <RoundButton onClick={this.onclick}
+                            <RoundButton onClick={this.loginClick}
+
                                          name="LOGIN"
-                                         btnPadding={7}
-                                         btnHeight={35}
-                                         btnWidth={270}
                                          btnMarTop={15}
-                                         Md={true}/>
+                            />
 
                         </View>
                         <Text style={styles.forgotPass}>Forgot Your Password?</Text>
@@ -56,4 +93,5 @@ export default class Login extends Component<{}> {
         );
     }
 }
+
 
