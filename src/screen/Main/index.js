@@ -10,11 +10,8 @@ import {
     View,
     Text,
     Image,
-    Button
 } from 'react-native';
 import RoundButton from "../../component/ui/RoundButton";
-import {Color} from "../../utils/color";
-
 
 export default class Main extends Component<{}> {
     render() {
@@ -27,7 +24,8 @@ export default class Main extends Component<{}> {
                         <Text style={styles.smallText}>iorem ipsum summytext here!</Text>
                     </View>
 
-                    <RoundButton onClick={this.onclick}
+                    <RoundButton
+                        onClick={() => this.props.navigation.navigate('Login')}
                                  name="LOGIN"
                                  btnPadding={7}
                                  btnHeight={35}
@@ -35,14 +33,15 @@ export default class Main extends Component<{}> {
                                  btnMarTop={15}
                                  sm={true}
                     />
-                    <RoundButton onClick={this.onclick}
+                    <RoundButton
+                        onClick={() => this.props.navigation.navigate('Signup')}
                                  name="SIGNUP"
                                  btnPadding={7}
                                  btnHeight={35}
                                  btnWidth={250}
                                  btnMarTop={15}
                     />
-                    <RoundButton onClick={this.onclick}
+                    <RoundButton onClick={() =>  this.props.navigation.navigate('Main')}
                                  name="LOGIN WITH FACEBOOK"
                                  btnPadding={7}
                                  btnHeight={35}

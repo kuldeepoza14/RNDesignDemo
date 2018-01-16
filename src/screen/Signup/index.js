@@ -10,18 +10,53 @@ import {
     View,
     Text,
     Image,
+    Alert
 } from 'react-native';
 import RoundButton from "../../component/ui/RoundButton";
 import FloatingInputText from "../../component/ui/FloatingInputText";
 import PasswordInputText from "../../component/ui/PasswordInputText";
-
+import {validation} from "../../utils/validate";
+import {StackNavigator} from "react-navigation";
 export default class Signup extends Component<{}> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            emailError: '',
+            password: '',
+            pwdError: '',
+            name: '',
+            nameError: '',
+            number: '',
+            numError: ''
+        };
+    }
 
     onclick = () => {
-        console.log("Name : " + this.state.name);
-        console.log("Email : " + this.state.email);
-        console.log("Password : " + this.state.password);
-        console.log("Number : " + this.state.number);
+        let nameErr = validation("name", this.state.name);
+        let numErr = validation("number", this.state.number);
+        let emailErr = validation("email", this.state.email);
+        let pwdErr = validation("password", this.state.password);
+        if (emailErr != null ||
+            pwdErr != null ||
+            nameErr != null ||
+            numErr != null) {
+            this.setState({
+                emailError: emailErr,
+                pwdError: pwdErr,
+                numError: numErr,
+                nameError: nameErr
+            });
+        }
+        else {
+            this.setState({
+                emailError: '',
+                pwdError: '',
+                numError: '',
+                nameError: ''
+            });
+            this.props.navigation.navigate('Login');
+        }
     };
 
     render() {
@@ -35,14 +70,19 @@ export default class Signup extends Component<{}> {
                     </View>
                     <View style={styles.newLoginBind}>
                         <FloatingInputText tfLabel='Name'
+                                           error={this.state.nameError}
                                            onChangeText={(name) => this.setState({name})}/>
                         <FloatingInputText tfLabel='Phone Number'
+                                           error={this.state.numError}
                                            keyboardType="numeric"
                                            onChangeText={(number) => this.setState({number})}/>
                         <FloatingInputText tfLabel='Email'
+                                           error={this.state.emailError}
                                            keyboardType="email-address"
                                            onChangeText={(email) => this.setState({email})}/>
-                        <PasswordInputText onChangeText={(password) => this.setState({password})}/>
+                        <PasswordInputText
+                            error={this.state.pwdError}
+                            onChangeText={(password) => this.setState({password})}/>
                         <RoundButton onClick={this.onclick}
                                      name="SIGNUP"
                                      btnPadding={7}

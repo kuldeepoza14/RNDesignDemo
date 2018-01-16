@@ -13,14 +13,34 @@ import {
 } from 'react-native';
 import RoundButton from "../../component/ui/RoundButton";
 import FloatingInputText from "../../component/ui/FloatingInputText";
-
+import {validation} from "../../utils/validate";
+import {StackNavigator} from "react-navigation";
 
 
 export default class ForgotPassword extends Component<{}> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            emailError: '',
+        };
+    }
 
 
     onclick = () => {
-        Alert.alert("Email : " + this.state.email);
+        let emailErr = validation("email", this.state.email);
+        if ((emailErr != null)) {
+            this.setState({
+                emailError: emailErr,
+            });
+        }
+        else {
+            this.setState({
+                emailError: '',
+            });
+            Alert.alert("Email send");
+        }
+
     };
 
     render() {
@@ -36,6 +56,7 @@ export default class ForgotPassword extends Component<{}> {
                         <View style={styles.itEmail}>
                             <FloatingInputText
                                 tfLabel='Email'
+                                error={this.state.emailError}
                                 keybordType="email-address"
                                 onChangeText={(email) => this.setState({email})}/>
                         </View>

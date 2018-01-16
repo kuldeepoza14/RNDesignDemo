@@ -10,7 +10,7 @@ import {
     View,
     Text,
     Image,
-    Alert
+    Alert,
 } from 'react-native';
 import RoundButton from "../../component/ui/RoundButton";
 import FloatingInputText from "../../component/ui/FloatingInputText";
@@ -23,43 +23,36 @@ export default class Login extends Component<{}> {
         super(props);
         this.state = {
             email: '',
-            emailError:'',
+            emailError: '',
             password: '',
-            passError:''
+            pwdError: ''
         };
+
     }
 
     loginClick = () => {
-        let result=validation("email",this.state.email);
-          if (!((result.email) == null)) {
-               this.setState({
-                   emailError: result.email.toString()
-               });
-           }
-           else
-           {
-               this.setState({
-                   emailError: ''
-               });
-           }
-        let resultPass=validation("password",this.state.password);
-        if (!((resultPass.password) == null)) {
-            this.setState({
-                passError: resultPass.password.toString()
-            });
-        }
-        else
-        {
-            this.setState({
-                passError: ''
-            });
-        }
+        let emailErr = validation("email", this.state.email);
+        let pwdErr = validation("password", this.state.password);
 
-       };
+        if (emailErr != null || pwdErr != null) {
+            this.setState({
+                emailError: emailErr,
+                pwdError: pwdErr,
+            });
+        }
+        else {
+            this.setState({
+                emailError: '',
+                pwdError: '',
+            });
+            this.props.navigation.navigate('Home');
+        }
+    };
 
     render() {
 
         return (
+
             <View style={styles.container}>
                 <View>
                     <View style={styles.textViewLogin}>
@@ -73,17 +66,16 @@ export default class Login extends Component<{}> {
                                            keybordType="email-address"
                                            onChangeText={(email) => this.setState({email})}/>
                         <PasswordInputText
-                            error={this.state.passError}
+                            error={this.state.pwdError}
                             onChangeText={(password) => this.setState({password})}/>
                         <View style={styles.btnLogin}>
                             <RoundButton onClick={this.loginClick}
-
                                          name="LOGIN"
                                          btnMarTop={15}
                             />
 
                         </View>
-                        <Text style={styles.forgotPass}>Forgot Your Password?</Text>
+                        <Text onPress={() => this.props.navigation.navigate('ForgotPassword')} style={styles.forgotPass}>Forgot Your Password?</Text>
                     </View>
 
                 </View>
@@ -95,3 +87,29 @@ export default class Login extends Component<{}> {
 }
 
 
+//get Method
+
+/*
+     const instance = axios.create({
+            baseURL: 'https://reqres.in/api/users',
+            timeout: 1000,
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        });
+
+  axios.get(root+'/posts/1')
+       .then(function (response) {
+           console.log(response);
+       })
+       .catch(function (error) {
+           console.log(error);
+       });
+*/
+
+//Post Method
+
+/*    axios.post('https://reqres.in/api/users/2',instance).then(function(response) {
+         console.log(response);
+     }).catch(function (error) {
+         console.log(error);
+     });
+*/

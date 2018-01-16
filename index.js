@@ -6,5 +6,6 @@ import ForgotPassword from "./src/screen/ForgotPassword";
 import Signup from "./src/screen/Signup";
 import PasswordInputText from "./src/component/ui/PasswordInputText";
 import FloatingInputText from "./src/component/ui/FloatingInputText";
+import Home from "./src/screen/Home";
 
-AppRegistry.registerComponent('AwesomeProject', () => Login);
+AppRegistry.registerComponent('AwesomeProject', () => App);
