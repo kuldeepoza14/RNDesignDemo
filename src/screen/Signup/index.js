@@ -10,13 +10,15 @@ import {
     View,
     Text,
     Image,
-    Alert
+    Alert, Platform
 } from 'react-native';
 import RoundButton from "../../component/ui/RoundButton";
 import FloatingInputText from "../../component/ui/FloatingInputText";
 import PasswordInputText from "../../component/ui/PasswordInputText";
 import {validation} from "../../utils/validate";
-import {StackNavigator} from "react-navigation";
+import {NavigationActions} from "react-navigation";
+import {instance} from "../../api";
+
 export default class Signup extends Component<{}> {
     constructor(props) {
         super(props);
@@ -55,7 +57,31 @@ export default class Signup extends Component<{}> {
                 numError: '',
                 nameError: ''
             });
-            this.props.navigation.navigate('Login');
+
+            instance.post('/register', {
+                mobile_no: this.state.number,
+                email: this.state.email,
+                password: this.state.password,
+                fcm_token: "abcdefghijklmnopqrstuvwxyz",
+                os: Platform.OS,
+                isMobileRequest: 1
+            }).then(response => {
+                if (response != null) {
+                    this.props.navigation.dispatch(NavigationActions.reset({
+                        index: 0,
+                        key: null,
+                        actions: [NavigationActions.navigate({routeName: 'Authorized'})]
+                    }));
+                }
+               //  this.setUserData(response.data.data.token, response.data.data.user);
+              //    this.getUserData();
+            }).catch(function (error) {
+                if(error.response.status === 422) {
+                    Alert.alert(error.response.data.meta.message);
+                }
+            });
+
+
         }
     };
 

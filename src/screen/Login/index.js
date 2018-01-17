@@ -11,11 +11,17 @@ import {
     Text,
     Image,
     Alert,
+    AsyncStorage
+
 } from 'react-native';
 import RoundButton from "../../component/ui/RoundButton";
 import FloatingInputText from "../../component/ui/FloatingInputText";
 import PasswordInputText from "../../component/ui/PasswordInputText";
 import {validation} from "../../utils/validate";
+import {Platform} from "react-native";
+import {instance} from "../../api/index";
+import {NavigationActions} from "react-navigation";
+
 
 export default class Login extends Component<{}> {
 
@@ -24,8 +30,9 @@ export default class Login extends Component<{}> {
         this.state = {
             email: '',
             emailError: '',
-            password: '',
-            pwdError: ''
+            password: 'secret',
+            pwdError: '',
+            data: ''
         };
 
     }
@@ -45,7 +52,46 @@ export default class Login extends Component<{}> {
                 emailError: '',
                 pwdError: '',
             });
-            this.props.navigation.navigate('Home');
+
+            instance.post('/login', {
+                email: this.state.email,
+                password: this.state.password,
+                fcm_token: "abcdefghijklmnopqrstuvwxyz",
+                os: Platform.OS
+            }).then(response => {
+                this.setUserData(response.data.data.token, response.data.data.user);
+                this.getUserData();
+                if (response != null) {
+                    this.props.navigation.dispatch(NavigationActions.reset({
+                        index: 0,
+                        key: null,
+                        actions: [NavigationActions.navigate({routeName: 'Authorized'})]
+                    }));
+                }
+            }).catch(function (error) {
+                if(error.response.status === 401) {
+                    Alert.alert(error.response.data.meta.message);
+                }
+            });
+
+        }
+    };
+
+    setUserData = async (token, user) => {
+        try {
+            await AsyncStorage.setItem('token', token);
+            await AsyncStorage.setItem('user', user);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    getUserData = async () => {
+        try {
+            const data = await AsyncStorage.getItem('token');
+            console.log(data + " df");
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -75,7 +121,8 @@ export default class Login extends Component<{}> {
                             />
 
                         </View>
-                        <Text onPress={() => this.props.navigation.navigate('ForgotPassword')} style={styles.forgotPass}>Forgot Your Password?</Text>
+                        <Text onPress={() => this.props.navigation.navigate('ForgotPassword')}
+                              style={styles.forgotPass}>Forgot Your Password?</Text>
                     </View>
 
                 </View>

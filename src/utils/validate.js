@@ -30,7 +30,7 @@ let constraints = {
             message: ErrorMessage.numBlank
         },
         length: {
-            minimum: 10,
+            minimum: 8,
             message: ErrorMessage.numLength,
         }
     },
